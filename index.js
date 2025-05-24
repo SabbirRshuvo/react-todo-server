@@ -29,12 +29,14 @@ async function run() {
       res.send("todo list connected");
     });
 
+    // create a todo
     app.post("/todos", async (req, res) => {
       const todo = req.body;
       todo.status = "pending";
       const result = await todoCollection.insertOne(todo);
       res.send(result);
     });
+    // get my todo list
     app.get("/todos", async (req, res) => {
       const status = req.query.status;
       let filter = {};
@@ -44,6 +46,7 @@ async function run() {
       const result = await todoCollection.find(filter).toArray();
       res.send(result);
     });
+    // update my todo data
 
     app.patch("/todos/:id", async (req, res) => {
       const id = req.params.id;
