@@ -5,7 +5,11 @@ const app = express();
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 // middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://react-todo-app-dfa57.web.app"],
+  })
+);
 app.use(express.json());
 
 const uri = process.env.MONGODB_URI;
